@@ -1,20 +1,24 @@
 from configparser import ConfigParser
 
-URL_HHRU_VACANCIES = 'https://api.hh.ru/vacancies'
+URL_HHRU_VACANCIES = 'https://api.hh.ru/vacancies/'
 URL_HHRU_EMPLOYERS = 'https://api.hh.ru/employers/'
 LIST_WITH_HHRU_ID_EMPLOYERS = [
-    566,  # OCS Distribution
-    1057,  # Лаборатория Касперского
-    1740,  # Яндекс
-    2381,  # Softline
-    3776,  # МТС
-    230005,  # 3LOGIC GROUP
-    598471,  # evrone.ru
-    906557,  # SberTech
-    1122462,  # Skyeng
-    1795976,  # Университет ИТМ
+    {'id': 566, 'name': 'OCS Distribution'},
+    {'id': 1057, 'name': 'Лаборатория Касперского'},
+    {'id': 1740, 'name': 'Яндекс'},
+    {'id': 2381, 'name': 'Softline'},
+    {'id': 3776, 'name': 'МТС'},
+    {'id': 230005, 'name': '3LOGIC GROUP'},
+    {'id': 598471, 'name': 'evrone.ru'},
+    {'id': 906557, 'name': 'SberTech'},
+    {'id': 1122462, 'name': 'Skyeng'},
+    {'id': 1795976, 'name': 'Университет ИТМ'}
 ]
-
+PARAMS: dict[str, bool | int] = {
+    "per_page": 100,
+    "only_with_salary": True
+}
+DATABASE_NAME = 'hhru_10_employers'
 
 def config(filename='database.ini', section='postgresql'):
     """Получение данных для работы БД из database.ini."""
