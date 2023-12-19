@@ -22,10 +22,10 @@ class DBManager:
                 SELECT employer_name, open_vacancies  
                 FROM employers
                 """)
-        return self.cur.fetchall
+        return self.cur.fetchall()
 
     def get_all_vacancies(self):
-        """Получает список всех вакансий с указанием названия компании и вакансии, зарплаты и ссылки на неё."""
+        """Получает список всех вакансий с указанием названия работодателя и вакансии, зарплаты и ссылки на неё."""
 
         self.cur.execute("""
                 SELECT employer_name, vacancy_name, salary, vacancy_url
@@ -33,7 +33,7 @@ class DBManager:
                 JOIN employers USING (employer_id)
                 ORDER BY employers.employer_name DESC
                 """)
-        return self.cur.fetchall
+        return self.cur.fetchall()
 
     def get_avg_salary(self):
         """Получает среднюю зарплату по вакансиям."""
@@ -42,7 +42,7 @@ class DBManager:
                 SELECT ROUND(AVG(salary), 2) AS salary_avg
                 FROM vacancies
                 """)
-        return self.cur.fetchall
+        return self.cur.fetchall()
 
     def get_vacancies_with_higher_salary(self):
         """Получает список всех вакансий, у которых зарплата выше средней по всем вакансиям."""
@@ -52,7 +52,7 @@ class DBManager:
                 FROM vacancies
                 WHERE salary > (SELECT AVG(salary) FROM vacancies)
                 """)
-        return self.cur.fetchall
+        return self.cur.fetchall()
 
     def get_vacancies_with_keyword(self, keyword):
         """Получает список всех вакансий, в названии которых содержатся переданное слово."""
